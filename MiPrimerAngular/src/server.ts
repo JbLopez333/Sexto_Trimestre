@@ -39,12 +39,24 @@ app.use(
  * Handle all other requests by rendering the Angular application.
  */
 app.use((req, res, next) => {
-  angularApp
-    .handle(req)
-    .then((response) =>
-      response ? writeResponseToNodeResponse(response, res) : next(),
-    )
-    .catch(next);
+  try {
+    angularApp
+      .handle(req)
+      .then((response) =>
+        response ? writeResponseToNodeResponse(response, res) : next(),
+      )
+      .catch((error) => {
+        // Permitir que continúe en caso de errores SSRF o de validación
+        if (error?.message?.includes('is not allowed')) {
+          console.warn('SSRF validation error, serving client-side rendering:', error.message);
+          next();
+        } else {
+          next(error);
+        }
+      });
+  } catch (error) {
+    next(error);
+  }
 });
 
 /**
