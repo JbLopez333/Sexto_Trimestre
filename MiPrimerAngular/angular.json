@@ -3,13 +3,38 @@
   "version": 1,
   "cli": {
     "packageManager": "npm",
-    "analytics": "98f22349-5639-44e5-bbb4-8c4d604e8845"
+    "analytics": "d3656e19-1cad-4f68-83b2-151faadd6e79"
   },
   "newProjectRoot": "projects",
   "projects": {
     "MiPrimerAngular": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:class": {
+          "skipTests": true
+        },
+        "@schematics/angular:component": {
+          "skipTests": true
+        },
+        "@schematics/angular:directive": {
+          "skipTests": true
+        },
+        "@schematics/angular:guard": {
+          "skipTests": true
+        },
+        "@schematics/angular:interceptor": {
+          "skipTests": true
+        },
+        "@schematics/angular:pipe": {
+          "skipTests": true
+        },
+        "@schematics/angular:resolver": {
+          "skipTests": true
+        },
+        "@schematics/angular:service": {
+          "skipTests": true
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -27,12 +52,7 @@
             ],
             "styles": [
               "src/styles.css"
-            ],
-            "server": "src/main.server.ts",
-            "outputMode": "server",
-            "ssr": {
-              "entry": "src/server.ts"
-            }
+            ]
           },
           "configurations": {
             "production": {
@@ -60,10 +80,6 @@
         },
         "serve": {
           "builder": "@angular/build:dev-server",
-          "options": {
-             "host": "0.0.0.0",
-              "allowedHosts": ["all"]
-           },
           "configurations": {
             "production": {
               "buildTarget": "MiPrimerAngular:build:production"
@@ -73,9 +89,6 @@
             }
           },
           "defaultConfiguration": "development"
-        },
-        "test": {
-          "builder": "@angular/build:unit-test"
         }
       }
     }

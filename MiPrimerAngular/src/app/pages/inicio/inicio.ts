@@ -6,6 +6,4 @@ import { Component } from '@angular/core';
   templateUrl: './inicio.html',
   styleUrl: './inicio.css',
 })
-export class Inicio { Bienvenidos = 'Bienvenidos ADSO';
-  estudiantes = ['Juan', 'María', 'Pedro']
-}
+export class Inicio {}
